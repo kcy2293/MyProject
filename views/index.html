@@ -1,9 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
 	<title>MyProject</title>
+	<style>
+		.green {
+			background-color: green;
+			min-height: 200px;
+			color: white;
+		}
+		.blue {
+			background-color: blue;
+			min-height: 200px;
+			color: white;
+		}
+		.orange {
+			background-color: orange;
+			min-height: 200px;
+			color: white;
+		}
+	</style>
 </head>
-<body>
-	<h1>hello!</h1>
+<body ng-app="MyProject">
+	<script src="/bower_components/angular/angular.js"></script>
+	<script src="/bower_components/angular-aria/angular-aria.js"></script>
+	<script src="/bower_components/angular-animate/angular-animate.js"></script>
+	<script src="/bower_components/angular-material/angular-material.js"></script>
+	<script>
+		angular.module('MyProject', ['ngMaterial']);
+		/* Configure Theme */
+		/*
+		angular.module('MyProject', ['ngMaterial'])
+			.config(function($mdThemingProvider) {
+				$mdThemingProvider.theme('default')
+					.primaryPalette('pink')
+					.accentPalette('orange')
+					.warnPalette('red')
+					.backgroundPalette('yellow');
+			});
+		*/
+	</script>
 </body>
 </html>

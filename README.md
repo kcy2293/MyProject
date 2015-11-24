@@ -3,6 +3,7 @@
 
 ```sh
 $ npm i -g gulp
+$ npm i -g bower
 $ npm install
 ```
 

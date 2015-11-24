@@ -6,7 +6,6 @@ var nodemon = require('gulp-nodemon');
 var bSync = require('browser-sync').create();
 
 var paths = {
-	app : './views/',
 	src : ['./views/index.html', './views/partials/*.html', './views/css/*.css', './views/js/*.js']
 };
 
@@ -22,11 +21,12 @@ gulp.task('RestServer', function() {
 
 gulp.task('browser-sync', function() {
 	bSync.init({
-		server : paths.app,
-		port: 9100,
-		ui: {
-			port: 9200
-		}
+		server : {
+			baseDir: "./",
+			index: "views/index.html"
+		},
+		port: 5001,
+		ui: { port: 5002 }
 	});
 	gulp.watch([paths.src]).on('change', bSync.reload);
 });
