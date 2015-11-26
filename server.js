@@ -16,7 +16,7 @@ app.use(compression());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
-app.use(express.static(path.join(__dirname, 'views')));
+app.use('/views', express.static(path.join(__dirname, 'views')));
 
 app.all('/*', function(req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
