@@ -9,48 +9,37 @@
 	<style>
 	</style>
 </head>
-<body ng-app="myApp" layout="column" ng-cloak ng-controller="AppCtrl as vm">
-
+<body ng-app="MyApp" layout="column" ng-controller="MyCtrl">
 	<md-toolbar layout="row">
-		<div class="md-toolbar-tools">
-			<md-button hide-gt-sm class="md-icon-button" ng-click="vm.toggleSidenav('left')">
-				<md-icon aria-label="Menu" md-svg-icon="/views/img/icon/menu.svg"></md-icon>
+		<div class="md-toolbar-tools md-whiteframe-4dp">
+			<md-button class="md-icon-button" hide-gt-sm ng-click="openLeftMenu()" aria-label="menu">
+				<md-icon md-svg-src="/views/img/icon/menu.svg"></md-icon>
 			</md-button>
-			<h1>App</h1>
+			<span>Header</span>
 		</div>
 	</md-toolbar>
-
 	<div layout="row" flex>
-		<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-4dp" 
-					md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
-			<md-button class="md-accent">Menu 1</md-button>
-			<md-button class="md-accent">Menu 2</md-button>
+		<md-sidenav md-component-id="left" class="md-sidenav-left md-whiteframe-3dp" 
+					md-is-locked-open="$mdMedia('gt-sm')" layout="column">
+			<md-button class="md-primary" aria-label="Menu1">Menu1</md-button>
+			<md-button class="md-primary" aria-label="Menu2">Menu2</md-button>
+			<md-button class="md-primary" aria-label="Menu3">Menu3</md-button>
 		</md-sidenav>
-		<div layout="column" flex id="content">
-			<md-content layout="column" flex class="md-padding">
-				Content !
-			</md-content>
-		</div>
+		<md-content class="md-padding">
+		<h3>Content Title</h3>
+		</md-content>
 	</div>
-
 	<script src="/bower_components/angular/angular.js"></script>
 	<script src="/bower_components/angular-aria/angular-aria.js"></script>
 	<script src="/bower_components/angular-animate/angular-animate.js"></script>
 	<script src="/bower_components/angular-material/angular-material.js"></script>
 	<script>
-		var app = angular
-			.module("myApp", ['ngMaterial']);
-
-
-		app.controller('AppCtrl', function($mdSidenav) {
-			var vm = this;
-			vm.toggleSidenav = function(menuId) {
-				console.log(menuId);
-				$mdSidenav(menuId).toggle();
+		var app = angular.module("MyApp", ['ngMaterial']);
+		app.controller("MyCtrl", function($scope, $mdSidenav) {
+			$scope.openLeftMenu = function() {
+				$mdSidenav('left').toggle();
 			};
 		});
-
 	</script>
-
 </body>
 </html>
