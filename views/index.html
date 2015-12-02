@@ -10,36 +10,42 @@
 	</style>
 </head>
 <body ng-app="MyApp" layout="column" ng-controller="MyCtrl">
-	<md-toolbar layout="row">
-		<div class="md-toolbar-tools md-whiteframe-4dp">
-			<md-button class="md-icon-button" hide-gt-sm ng-click="openLeftMenu()" aria-label="menu">
-				<md-icon md-svg-src="/views/img/icon/menu.svg"></md-icon>
-			</md-button>
-			<span>Header</span>
-		</div>
-	</md-toolbar>
 	<div layout="row" flex>
-		<md-sidenav md-component-id="left" class="md-sidenav-left md-whiteframe-3dp" 
-					md-is-locked-open="$mdMedia('gt-sm')" layout="column">
-			<md-button class="md-primary" aria-label="Menu1">Menu1</md-button>
-			<md-button class="md-primary" aria-label="Menu2">Menu2</md-button>
-			<md-button class="md-primary" aria-label="Menu3">Menu3</md-button>
+		<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-4dp"
+					md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+			<md-button class="md-accent">menu1</md-button>
 		</md-sidenav>
-		<md-content class="md-padding">
-		<h3>Content Title</h3>
-		</md-content>
+		<div layout="column" flex>
+			<md-toolbar class="md-toolbar-tools">
+				<md-button ng-click="toggleMenu()"class="md-icon-button" hide-gt-sm>
+					<md-icon md-svg-icon="/views/img/icon/menu.svg"></md-icon>
+				</md-button>
+				<span>Header</span>
+			</md-toolbar>
+			<div layout="row" layout-sm="column" layout-padding>
+				<div flex-gt-sm="20">
+					<md-input-container>
+						<label>Search</label>
+						<input ng-model="query">
+					</md-input-container>
+				</div>
+				<div flex-gt-sm="80">
+					<ul>
+						<li ng-repeat="phone in phones">
+							<span>{{phone.name}}</span>
+							<p>{{phone.description}}</p>
+						</li>
+					</ul>
+					<p>Total number of phones: {{phones.length}}</p>
+				</div>
+			</div>
+		</div>
 	</div>
+
 	<script src="/bower_components/angular/angular.js"></script>
 	<script src="/bower_components/angular-aria/angular-aria.js"></script>
 	<script src="/bower_components/angular-animate/angular-animate.js"></script>
 	<script src="/bower_components/angular-material/angular-material.js"></script>
-	<script>
-		var app = angular.module("MyApp", ['ngMaterial']);
-		app.controller("MyCtrl", function($scope, $mdSidenav) {
-			$scope.openLeftMenu = function() {
-				$mdSidenav('left').toggle();
-			};
-		});
-	</script>
+	<script src="/views/js/controllers.js"></script>
 </body>
 </html>
