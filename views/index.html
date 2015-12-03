@@ -9,39 +9,44 @@
 	<style>
 	</style>
 </head>
-<body ng-app="MyApp" layout="column" ng-controller="MyCtrl">
+<body ng-app="MyApp" ng-controller="MyCtrl" layout="column" flex>
+	<md-toolbar layout="row" class="md-toolbar-tools">
+		<md-button class="md-icon-button" ng-click="toggleSidenav()">
+			<md-icon md-svg-icon="/views/img/icon/menu.svg"></md-icon>
+		</md-button>
+		<span>Header</span>
+	</md-toolbar>
 	<div layout="row" flex>
-		<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-4dp"
-					md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
-			<md-button class="md-accent">menu1</md-button>
-		</md-sidenav>
-		<div layout="column" flex>
-			<md-toolbar class="md-toolbar-tools">
-				<md-button ng-click="toggleMenu()"class="md-icon-button" hide-gt-sm>
-					<md-icon md-svg-icon="/views/img/icon/menu.svg"></md-icon>
-				</md-button>
-				<span>Header</span>
-			</md-toolbar>
-			<div layout="row" layout-sm="column" layout-padding>
-				<div flex-gt-sm="20">
-					<md-input-container>
-						<label>Search</label>
-						<input ng-model="query">
-					</md-input-container>
-				</div>
-				<div flex-gt-sm="80">
-					<ul>
-						<li ng-repeat="phone in phones">
-							<span>{{phone.name}}</span>
-							<p>{{phone.description}}</p>
-						</li>
-					</ul>
-					<p>Total number of phones: {{phones.length}}</p>
-				</div>
+		<md-sideNav layout="column" class="md-sidenav-left md-whiteframe-4dp"
+					md-component-id="left">
+			<md-button>Menu1</md-button>
+			<md-button>Menu2</md-button>
+		</md-sideNav>
+		<md-content layout="column" layout-gt-md="row" layout-padding flex>
+			<div layout="column" flex-gt-md="20" layout-sm="row">
+				<md-input-container flex-sm="30">
+					<label>Order By</label>
+					<md-select ng-model="orderProp">
+						<md-option value="name">Alphabetical</md-option>
+						<md-option value="age">Newest</md-option>
+					</md-select>
+				</md-input-container>
+				<md-input-container flex-sm="70">
+					<label>Search</label>
+					<input id="qinput" ng-model="query">
+				</md-input-container>
 			</div>
-		</div>
+			<div layout="column" flext-gt-md="80" layout-margin>
+				<ul>
+					<li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
+						<span>{{phone.name}}</span>
+						<p>{{phone.desc}}</p>
+					</li>
+				</ul>
+				<p>Total number of phones : {{phones.length}}</p>
+			</div>
+		</md-content>
 	</div>
-
 	<script src="/bower_components/angular/angular.js"></script>
 	<script src="/bower_components/angular-aria/angular-aria.js"></script>
 	<script src="/bower_components/angular-animate/angular-animate.js"></script>
