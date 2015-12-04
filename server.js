@@ -34,6 +34,8 @@ app.get('/', function(req, res) {
 	res.sendFile(path.join(__dirname, "/views/index.html"));
 });
 
+app.use('/phones', require('./routes/phones'));
+
 /******************************
  * START SERVER
  ******************************/

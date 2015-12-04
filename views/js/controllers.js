@@ -1,20 +1,12 @@
 var app = angular.module("MyApp", ["ngMaterial"]);
-app.controller("MyCtrl", function($scope, $mdSidenav) {
+app.controller("MyCtrl", function($scope, $http, $mdSidenav) {
 	$scope.toggleSidenav = function() {
 		$mdSidenav("left").toggle();
 	};
+
+	$http.get('/phones').success(function(data) {
+		$scope.phones = data;
+		//$scope.phones = data.splice(0, 5); // for pagination.. maybe..
+	});
 	$scope.orderProp = "age";
-	$scope.phones = [{
-		"name" : "Nexus S",
-		"desc" : "Fast just got faster with Nexus S.",
-		"age": 2
-	},{
-		"name" : "Motorola XOOM™ with Wi-Fi",
-		"desc" : "The Next, Next Generation tablet.",
-		"age": 1
-	},{
-		"name" : "MOTOROLA XOOM™",
-		"desc" : "The Next, Next Generation tablet.",
-		"age": 3
-	}];
 });

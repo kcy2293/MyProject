@@ -12,7 +12,7 @@ var paths = {
 gulp.task('RestServer', function() {
 	nodemon({
 		script: 'server.js',
-		ext: 'js',
+		ignore : ["views/*.js"],
 		env: {'NODE_ENV' : 'development'}
 	}).on('restart', function() {
 		console.log("Server restarted!!");
@@ -21,6 +21,11 @@ gulp.task('RestServer', function() {
 
 gulp.task('browser-sync', function() {
 	bSync.init({
+		proxy: "localhost:5000",
+		serverStatic: ['.']
+	});
+	/*
+	bSync.init({
 		server : {
 			baseDir: "./",
 			index: "views/index.html"
@@ -28,6 +33,7 @@ gulp.task('browser-sync', function() {
 		port: 5001,
 		ui: { port: 5002 }
 	});
+	*/
 	gulp.watch([paths.src]).on('change', bSync.reload);
 });
 
